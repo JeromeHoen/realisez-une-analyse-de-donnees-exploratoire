@@ -4,6 +4,12 @@ import numpy as np
 import pandas as pd
 from scipy.cluster.hierarchy import dendrogram
 
+def full_print(*arg, columns=20, rows=60, colwidth=50):
+    with pd.option_context('max_columns', columns,
+                           'max_rows', rows,
+                           'max_colwidth', colwidth):
+        display(*arg)
+
 def display_circles(pcs, n_comp, pca, axis_ranks, labels=None, label_rotation=0, lims=None):
     for d1, d2 in axis_ranks: # On affiche les 3 premiers plans factoriels, donc les 6 premières composantes
         if d2 < n_comp:
