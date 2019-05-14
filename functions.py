@@ -1,16 +1,18 @@
-import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 import numpy as np
 import pandas as pd
 from scipy.cluster.hierarchy import dendrogram
 
 def full_print(*arg, columns=20, rows=60, colwidth=50):
+    """Set pandas.option_context and display a DataFrame"""
     with pd.option_context('display.max_columns', columns,
                            'display.max_rows', rows,
                            'display.max_colwidth', colwidth):
         display(*arg)
 
-def display_circles(pcs, n_comp, pca, axis_ranks, labels=None, label_rotation=0, lims=None):
+def display_circles(pca, axis_ranks=[(0, 1)], labels=None, label_rotation=0, lims=None):
+    pcs = pca.components_
+    n_comp = pca_popularity.n_components_
     for d1, d2 in axis_ranks: # On affiche les 3 premiers plans factoriels, donc les 6 premières composantes
         if d2 < n_comp:
 
@@ -119,4 +121,3 @@ def plot_dendrogram(Z, names):
         orientation = "left",
     )
     plt.show()
-
